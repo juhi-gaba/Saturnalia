@@ -1,7 +1,7 @@
 # Saturnalia
 This is a coding challenge assignmentD"
 
-#Problem Statement
+# Problem Statement
 It is the eve of Saturnalia in the Roman Empire, and Caterina is preparing the stables for the next day's chariot race. 
 Part of her job is to write instructions and notes, print them on her printer (she's ahead of her time), and put them on the stable 
 walls.That's simple, but because Saturnalia is an important festival, she wants to make them beautiful. Caterina needs a computer 
@@ -25,7 +25,7 @@ Each input line will contain between 1 and 70 characters.
 Each character will either be an English letter, a space, or one of the following punctuation characters: ,?!'. 
 (comma, question mark, exclamation point, apostrophe, or period).
 
-#Sample
+# Sample
 Input 
  	
 5
