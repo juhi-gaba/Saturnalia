@@ -71,9 +71,10 @@ public class Saturnalia {
     }
 
     /**
+     * Generate the border for the box.
      *
-     * @param line
-     * @param boxBuilder
+     * @param line       Line for which the border has to be generated
+     * @param boxBuilder Instance of builder.
      */
     private static void generateBoxBorder(String line, StringBuilder boxBuilder) {
 
