@@ -1,10 +1,10 @@
-# Saturnalia
+# saturnalia.Saturnalia
 This is a coding challenge assignmentD"
 
 # Problem Statement
-It is the eve of Saturnalia in the Roman Empire, and Caterina is preparing the stables for the next day's chariot race. 
+It is the eve of saturnalia.Saturnalia in the Roman Empire, and Caterina is preparing the stables for the next day's chariot race. 
 Part of her job is to write instructions and notes, print them on her printer (she's ahead of her time), and put them on the stable 
-walls.That's simple, but because Saturnalia is an important festival, she wants to make them beautiful. Caterina needs a computer 
+walls.That's simple, but because saturnalia.Saturnalia is an important festival, she wants to make them beautiful. Caterina needs a computer 
 program that reads a message and outputs it back, decorated with a box. The program needs to be able to handle many messages at once.
 Can you help her?
 
@@ -29,7 +29,7 @@ Each character will either be an English letter, a space, or one of the followin
 Input 
  	
 5
-Merry Saturnalia, Giovanni!
+Merry saturnalia.Saturnalia, Giovanni!
 Equus, you're the best!
 Caballus, you try really hard!
    
@@ -41,7 +41,7 @@ Output
  
 Case #1:
 +-----------------------------+
-| Merry Saturnalia, Giovanni! |
+| Merry saturnalia.Saturnalia, Giovanni! |
 +-----------------------------+
 Case #2:
 +-------------------------+

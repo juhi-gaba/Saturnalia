@@ -1,4 +1,6 @@
-import java.io.IOException;
+package saturnalia;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +17,7 @@ public class Saturnalia {
 
     /**
      * Entry point of code.
+     *
      * @param args Input.
      */
     public static void main(String[] args) {
@@ -24,24 +27,10 @@ public class Saturnalia {
         try {
 
             String filePath = args[0];
-            String lines[] = readFile(filePath).split("\\r?\\n");
+            String input = readFile(filePath);
+            String output = processInput(input);
 
-            int numberOfLines = Integer.parseInt(lines[0]);
-
-            StringBuilder outputBuilder = new StringBuilder();
-
-            IntStream.range(1,numberOfLines+1).forEach(i-> {
-
-                outputBuilder.append("Case #")
-                        .append(i)
-                        .append(":")
-                        .append("\n");
-
-                appendBox(lines[i], outputBuilder);
-
-            });
-
-            writeFile(writeFilePath, outputBuilder.toString());
+            writeFile(writeFilePath, output);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,9 +38,31 @@ public class Saturnalia {
     }
 
     /**
+     * Process Input
+     * @param input Data to be processed.
+     * @return      Processed data
+     */
+    public static String processInput(String input) {
+        String lines[] = input.split("\\r?\\n");
+
+        int numberOfLines = Integer.parseInt(lines[0]);
+
+        StringBuilder outputBuilder = new StringBuilder();
+
+        IntStream.range(1, numberOfLines + 1).forEach(i -> {
+
+            outputBuilder.append("Case #").append(i).append(":").append("\n");
+
+            appendBox(lines[i], outputBuilder);
+
+        });
+        return outputBuilder.toString();
+    }
+
+    /**
      * Prints the box around every line.
      *
-     * @param line          A string representing the line.
+     * @param line A string representing the line.
      * @param output String builder instance.
      */
     private static void appendBox(String line, StringBuilder output) {
@@ -60,9 +71,7 @@ public class Saturnalia {
 
         generateBoxBorder(line, boxBuilder);
 
-        boxBuilder.append("| ")
-                .append(line)
-                .append(" |");
+        boxBuilder.append("| ").append(line).append(" |");
         boxBuilder.append(LINE_SEPARATOR);
 
         generateBoxBorder(line, boxBuilder);
@@ -82,8 +91,7 @@ public class Saturnalia {
 
         boxBuilder.append("+");
 
-        IntStream.range(0,borderLength)
-                .forEach(i-> boxBuilder.append("-"));
+        IntStream.range(0, borderLength).forEach(i -> boxBuilder.append("-"));
 
         boxBuilder.append("+");
         boxBuilder.append(LINE_SEPARATOR);
@@ -94,25 +102,25 @@ public class Saturnalia {
      *
      * @param filePath      The path of the file to read.
      * @return              String representing the content inside the file.
-     * @throws IOException  Thrown when the file can not be read.
+     * @throws IOException Thrown when the file can not be read.
      */
-    private static String readFile(String filePath) throws IOException {
+    public static String readFile(String filePath) throws IOException {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        Path inputFilePath = Paths.get(filePath);
+        InputStream is = new FileInputStream(filePath);
+        @SuppressWarnings("resource")
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(is, "UTF8"));
 
-        try (Stream<String> stream = Files.lines(inputFilePath)) {
+        String line = bufferedReader.readLine();
 
-            stream.forEach(line->
-                    stringBuilder.append(line)
-                                .append(LINE_SEPARATOR)
-            );
+        StringBuilder builder = new StringBuilder();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (line != null) {
+            builder.append(line).append("\n");
+            line = bufferedReader.readLine();
         }
 
-        return stringBuilder.toString();
+        return builder.toString();
     }
 
     /**
@@ -124,15 +132,11 @@ public class Saturnalia {
 
         try {
 
-            Files.write(
-                    Paths.get(writeFilePath),
-                    data.getBytes()
-            );
+            Files.write(Paths.get(writeFilePath), data.getBytes());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 
